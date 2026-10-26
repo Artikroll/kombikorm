@@ -208,8 +208,12 @@ p{margin:0}
 .mo{border:1px solid var(--line);background:#fff;border-radius:14px;padding:14px 10px;text-align:left;cursor:pointer;transition:border-color .2s,background .2s}
 .mo b{display:block;font:800 18px "Manrope";color:var(--g900)}
 .mo span{display:block;font-size:12.5px;color:var(--soft);margin-top:4px;line-height:1.3}
-.mo i{display:flex;gap:3px;margin-top:10px}
-.mo i u{height:6px;flex:1;border-radius:3px;text-decoration:none}
+.mo i{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px;font-style:normal}
+.mo em{font:600 11.5px/1.15 "Golos";font-style:normal;padding:4px 7px;border-radius:10px;max-width:100%}
+.mo{min-width:0;overflow:hidden}
+.ph-start{background:#FEF3C7;color:#854D0E}
+.ph-grow{background:#DCFCE7;color:#166534}
+.ph-finish{background:#CCFBF1;color:#115E59}
 .mo.on{background:var(--g900);border-color:var(--g900)}
 .mo.on b{color:#fff}.mo.on span{color:#C9DDCF}
 .mo-card{margin-top:18px;display:grid;grid-template-columns:1fr 1.3fr;gap:28px;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px 28px}
@@ -221,7 +225,7 @@ p{margin:0}
 .mo-marks button:hover{border-color:var(--g600)}
 .mo-marks b{display:block;font:800 16px "Manrope";color:var(--g900)}
 .mo-marks small{display:block;font-size:12.5px;color:var(--muted)}
-.mo-leg{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;font-size:13px;color:var(--muted)}
+.mo-leg{margin-top:14px;font-size:14px;color:var(--muted)}
 .mo-leg span{display:inline-flex;align-items:center;gap:6px}
 .mo-leg i{width:14px;height:6px;border-radius:3px}
 /* farm side cards */
@@ -692,7 +696,7 @@ p{margin:0}
   <div class="wrap">
     <div class="sec-head"><div><div class="eyebrow">Календарь кормления</div><h2>Что брать в каждый месяц</h2><p class="lead">Сезон в Зауралье: весной стартеры для молодняка, летом рост и финиш, осенью концентраты для скота на стойловом содержании.</p></div></div>
     <div class="months rv" id="months" role="tablist" aria-label="Месяцы"></div>
-    <div class="mo-leg"><span><i style="background:var(--ph-start)"></i>Старт</span><span><i style="background:var(--ph-grow)"></i>Рост</span><span><i style="background:var(--ph-finish)"></i>Финиш и продуктивность</span></div>
+    <p class="mo-leg">Метки на месяце показывают, какие корма нужны в это время: стартовые для молодняка, для роста или финишные и для взрослых животных. Нажмите на месяц, чтобы увидеть марки.</p>
     <div class="mo-card rv" id="moCard"></div>
   </div>
 </section>
@@ -1206,7 +1210,7 @@ const MONTHS = [
   ["Ноя–мар","зима",[20,21,19,12,6],"Зимнее содержание","Концентраты для скота, корм для кроликов и несушек."]
 ];
 function initSeason(){
-  $("#months").innerHTML = MONTHS.map(([m,,ids],i)=>`<button type="button" class="mo ${i===0?'on':''}" data-mo="${i}" role="tab"><b>${m}</b><span>${MONTHS[i][3]}</span><i>${ids.slice(0,5).map(id=>`<u style="background:${PH[byId[id].ph].hex}"></u>`).join("")}</i></button>`).join("");
+  $("#months").innerHTML = MONTHS.map(([m,,ids],i)=>`<button type="button" class="mo ${i===0?'on':''}" data-mo="${i}" role="tab"><b>${m}</b><span>${MONTHS[i][3]}</span><i>${["start","grow","finish"].filter(p=>ids.some(id=>byId[id].ph===p)).map(p=>`<em class="ph-${p}">${p==="finish"?"Финиш, взрослые":PH[p].n}</em>`).join("")}</i></button>`).join("");
   const show = i => {
     const [m,full,ids,title,txt] = MONTHS[i];
     const winter = i===7 ? ` ${gap("Работа производства с ноября по март уточняется.","Наличие зимой уточняйте при заявке.")}` : "";
