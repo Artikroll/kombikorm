@@ -6,7 +6,7 @@
 <title>Абзелиловский комбикорм · каталог, рецептуры и расчёт объёма</title>
 <meta name="description" content="Проект производства комбикорма в Аюсазово. Каталог из 22 рецептур, расчёт по фазам кормления и предварительные условия поставки.">
 <meta property="og:title" content="Абзелиловский комбикорм">
-<meta property="og:description" content="Каталог рецептур и калькулятор корма на весь цикл. Проект производства в Абзелиловском районе.">
+<meta property="og:description" content="Каталог и расчёт расхода комбикорма на день и на выбранный срок. Проект производства в Абзелиловском районе.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#14532D">
 <meta name="robots" content="noindex, nofollow">
@@ -248,19 +248,27 @@ p{margin:0}
 .seg{display:flex;flex-wrap:wrap;gap:8px}
 .seg button{border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:9px 13px;font:500 15px "Golos";cursor:pointer}
 .seg button.on{background:var(--g900);border-color:var(--g900);color:#fff}
-.heads{display:flex;align-items:center;gap:14px;margin-top:24px;flex-wrap:wrap}
-.heads input{width:150px;font:800 28px "Manrope";padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
-.heads span{color:var(--muted)}
-.crow{display:grid;grid-template-columns:1.4fr 1fr 1fr 90px;gap:12px;align-items:end;padding:16px 0;border-top:1px solid var(--line)}
+.calc-fields{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.calc-fields>*{min-width:0}
+.calc-grid .panel>.calc-fields{margin-top:0}
+#calcMode{margin-top:18px}
+#calcMode[hidden]{display:none}
+#calcSingle .calc-fields{grid-template-columns:2fr 1fr}
+.calc-rate{color:var(--g900);margin:12px 0 0;font-size:14px}
+.crow{display:grid;grid-template-columns:minmax(0,1fr) 86px 82px;gap:12px;align-items:end;padding:14px 0;border-top:1px solid var(--line)}
 .crow>*{min-width:0}
 .crow:first-of-type{margin-top:24px}
 .crow .nm b{font:800 18px "Manrope";color:var(--g900);display:block}
 .crow .nm span{font-size:14px;color:var(--muted);line-height:1.3;display:block}
 .fld small{display:block;font-size:12px;color:var(--soft);margin-bottom:5px}
-.fld input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font-size:16px}
+.fld input,.fld select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;font-size:16px}
 .crow .out{text-align:right;font:800 20px "Manrope";white-space:nowrap}
 .crow .out small{display:block;font:500 12px "Golos";color:var(--soft)}
 .calc-hint{font-size:14px;color:var(--muted);margin-top:14px;background:var(--gold50);border-radius:12px;padding:12px 14px}
+.calc-sources{margin-top:10px;font-size:14px;color:var(--muted)}
+.calc-sources summary{cursor:pointer}
+.calc-sources ul{padding-left:22px;margin:8px 0 0}
+.calc-sources li+li{margin-top:7px}
 .res{position:sticky;top:96px;background:var(--g900);color:#fff;border-radius:var(--r);padding:28px;overflow:hidden}
 .res::after{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;background:rgba(74,222,128,.08)}
 .res .lbl{color:#9FC3A9}
@@ -521,9 +529,10 @@ p{margin:0}
   .ptable td.num.c-alt{text-align:right}
   .ptable tr.row.on{background:var(--g50)}
   .panel,.form,.basket,.res,.season{padding:20px}
+  #calcSingle .calc-fields{grid-template-columns:1fr}
   .crow{grid-template-columns:1fr 1fr;gap:10px}
   .crow .nm{grid-column:1/-1}
-  .crow .out{grid-column:1/-1;text-align:left;display:flex;gap:10px;align-items:baseline}
+  .crow .out{align-self:center}
   .res-big{font-size:46px}
   .steps{grid-template-columns:1fr}
   .bar-row{grid-template-columns:1fr;gap:6px}
@@ -594,7 +603,7 @@ p{margin:0}
     <div>
       <p class="eyebrow">Башкортостан · Абзелиловский район</p>
       <h1 id="hero-title">Гранулированный <em>комбикорм</em></h1>
-      <p class="lead">Для птицы и сельскохозяйственных животных. Подберите рецепт по возрасту, сравните составы и рассчитайте объём на весь цикл.</p>
+      <p class="lead">Для птицы и сельскохозяйственных животных. Подберите комбикорм по возрасту, сравните составы и рассчитайте объём на нужный срок.</p>
       <div class="hero-cta">
         <a class="btn btn-main" href="#catalog" data-pt-go="ret">Смотреть каталог <span aria-hidden="true">↘</span></a>
         <a class="btn btn-line" href="#calc">Рассчитать объём</a>
@@ -655,26 +664,37 @@ p{margin:0}
     <div class="sec-head">
       <div>
         <div class="eyebrow">Калькулятор</div>
-        <h2>Сколько мешков нужно на весь цикл</h2>
-        <p class="lead">Введите поголовье, дни и суточную норму на голову. Посчитаем мешки, тонны, замесы и стоимость по рознице и по опту.</p>
+        <h2>Сколько комбикорма нужно</h2>
+        <p class="lead">Выберите животное и марку комбикорма, укажите поголовье и дни. Суточный расход подставим автоматически и посчитаем, сколько мешков купить.</p>
       </div>
     </div>
     <div class="calc-grid">
       <div class="panel rv">
-        <span class="lbl">Кого кормите</span>
-        <div class="seg" id="calcAnimals"></div>
-        <div class="heads">
-          <input id="calcHeads" type="number" inputmode="numeric" min="1" max="100000" value="50" aria-label="Поголовье">
-          <span>голов</span>
+        <div class="calc-fields">
+          <label class="fld"><small>Кого кормите</small><select id="calcAnimal"></select></label>
+          <label class="fld"><small>Поголовье</small><input id="calcHeads" type="number" inputmode="numeric" min="1" max="100000" value="50"></label>
         </div>
-        <div id="calcRows"></div>
-        <p class="calc-hint">Дни подставлены из возрастных фаз рецепта. Суточную норму на голову возьмите из инструкции к комбикорму или уточните у специалиста.</p>
+        <div class="seg" id="calcMode" role="group" aria-label="Режим расчёта">
+          <button type="button" data-calc-mode="single" class="on" aria-pressed="true">Одна марка</button>
+          <button type="button" data-calc-mode="cycle" aria-pressed="false">По фазам</button>
+        </div>
+        <div id="calcSingle">
+          <div class="calc-fields">
+            <label class="fld"><small>Марка и возраст</small><select id="calcMark" aria-describedby="calcRate"></select></label>
+            <label class="fld"><small>На сколько дней</small><input id="calcDays" type="number" inputmode="numeric" min="1" max="1000" value="1"></label>
+          </div>
+          <p class="calc-rate" id="calcRate"></p>
+        </div>
+        <div id="calcRows" hidden></div>
+        <p class="calc-hint" id="calcHint"></p>
+        <details class="calc-sources"><summary>Откуда взяты значения</summary><ul id="calcSources"></ul></details>
       </div>
       <aside class="res rv d1" aria-live="polite">
-        <span class="lbl">Итого на цикл</span>
-        <div class="res-big"><span id="rBags">0</span><small>мешков</small></div>
+        <span class="lbl">Итого за выбранный срок</span>
+        <div class="res-big"><span id="rBags">0</span><small id="rBagsUnit">мешков</small></div>
         <div class="res-sub" id="rKg">0 кг</div>
         <div class="res-rows">
+          <div><span id="rDailyLabel">Расход за день</span><b id="rDaily">0 г</b></div>
           <div><span>Розничная оценка</span><b id="rRet">0 ₽</b></div>
           <div><span>Оптовая оценка</span><b id="rOpt">0 ₽</b></div>
           <div><span>Замесов по 250 кг</span><b id="rMix">0</b></div>
@@ -1099,7 +1119,7 @@ function renderDetail(){
       <p class="draft-data">${complete ? "Проектный состав. Дозировки уточняются перед выпуском." : "Показываем перечень компонентов. Дозировки будут доступны после сверки рецептуры."}</p>
       ${complete ? `<div class="stack" aria-hidden="true">${ordered.map(([n,v])=>`<span title="${n}: ${v} кг" style="flex:0 0 ${v/tot*100}%;background:${colorOf[n]}"></span>`).join("")}</div>
       <div class="legend">${GROUPS.filter(g=>by[g.k]).map(g=>{const s=by[g.k].reduce((a,[,v])=>a+v,0);return `<div><i style="background:${g.col}"></i>${g.n}<b>${num(s/tot*100)}%</b></div>`}).join("")}</div>` : ""}
-      <div style="display:flex;gap:10px;margin-top:22px;flex-wrap:wrap"><button class="btn btn-main btn-sm" type="button" data-add="${r.id}">${S.order[r.id]?'Уже в заявке':'Добавить в заявку'}</button><a class="btn btn-line btn-sm" href="#calc" data-calc="${r.cat}">Посчитать мешки</a></div>
+      <div style="display:flex;gap:10px;margin-top:22px;flex-wrap:wrap"><button class="btn btn-main btn-sm" type="button" data-add="${r.id}">${S.order[r.id]?'Уже в заявке':'Добавить в заявку'}</button><a class="btn btn-line btn-sm" href="#calc" data-calc="${r.id}">Посчитать мешки</a></div>
     </div>
     <div class="dt-r"><table class="ctab"><thead><tr><th>Компонент</th>${complete ? "<th>На 1 т, кг</th><th>На 500 кг, кг</th>" : ""}</tr></thead>
       <tbody>${ordered.map(([n,v])=>`<tr><td><i style="background:${colorOf[n]}"></i>${n}</td>${complete ? `<td>${num(v)}</td><td>${num(v/2)}</td>` : ""}</tr>`).join("")}</tbody>
@@ -1130,7 +1150,7 @@ document.addEventListener("click", e=>{
   const card = e.target.closest(".pc,[data-id].row");
   if(card){ S.sel=+card.dataset.id; $$(".pc,.row").forEach(x=>x.classList.toggle("on",+x.dataset.id===S.sel)); const lv=$(".line-view .lv"); if(lv) lv.outerHTML=lineVisual(CATS.find(x=>x.id===byId[S.sel].cat)); renderDetail(); if(recipeButton) $("#detail h3").focus({preventScroll:false}); return; }
   const cl = e.target.closest("[data-calc]");
-  if(cl){ setCalcAnimal(cl.dataset.calc); }
+  if(cl){ setCalcRecipe(+cl.dataset.calc); }
   const st = e.target.closest("[data-status]");
   if(st){ const sel=$("#fStatus"); sel.value = st.dataset.status; const t=$("[name=animals]"); if(!t.value && st.dataset.note) t.value=st.dataset.note; }
   const go = e.target.closest("[data-pt-go]");
@@ -1153,54 +1173,197 @@ function downloadPrice(){
 }
 
 /* ---------- calculator ---------- */
-let calcCat = "broiler";
-const calcVals = {};
-function setCalcAnimal(cat){ calcCat = cat; renderCalc(); }
-function renderCalc(){
-  $("#calcAnimals").innerHTML = CATS.map(ct=>`<button type="button" data-ca="${ct.id}" class="${calcCat===ct.id?'on':''}">${ct.name}</button>`).join("");
-  const rows = R.filter(r=>r.cat===calcCat);
-  $("#calcRows").innerHTML = rows.map(r=>{const v=calcVals[r.id]||{d:r.days??"",g:""};return `
-    <div class="crow" data-r="${r.id}">
-      <div class="nm"><b>${r.mk}</b><span>${r.nm}, ${r.age}</span></div>
-      <label class="fld"><small>Дней</small><input type="number" inputmode="numeric" min="0" max="1000" data-k="d" value="${v.d}" placeholder="дней"></label>
-      <label class="fld"><small>Норма в сутки, г</small><input type="number" inputmode="decimal" min="0" max="30000" step="0.1" data-k="g" value="${v.g}" placeholder="г/сутки"></label>
+const feedSources = {
+  ross: ["Aviagen · Ross 308", "https://ross-intl.aviagen.com/assets/Tech_Center/Ross_Broiler/RossxRoss308-BroilerPerformanceObjectives2022-EN.pdf"],
+  hyline: ["Hy-Line Brown", "https://www.hyline.com/filesimages/Hy-Line-Products/Hy-Line-Product-PDFs/Brown/BRN%20STD%20ENG.pdf"],
+  gooseStart: ["ФАО · выращивание гусей", "https://www.fao.org/4/Y4359E/y4359e0b.htm"],
+  gooseGrow: ["Исследование кормления гусей White Roman", "https://kmweb.moa.gov.tw/redirect_files.php?id=584279&theme=knowledgebase"],
+  gooseFinish: ["Исследование кормления гусей Yangzhou, табл. 4", "https://pmc.ncbi.nlm.nih.gov/articles/PMC10765298/#tbl4"],
+  duckGrow: ["Cornell Duck Research Laboratory · данные Metzer Farms", "https://www.metzerfarms.com/daily-feed-water-ducklings.html"],
+  duckFinish: ["Metzer Farms · пекинские утки", "https://www.metzerfarms.com/blog/how-much-will-my-ducks-eat.html"],
+  turkey: ["Aviagen Turkeys · B.U.T. 6", "https://aviagenturkeys.com/uploads/2022/05/16/POCLLB6_V2_BUT%206-Commercial%20Goals_UK_2022.pdf"],
+  rabbitStart: ["ФАО · кормление кроликов, табл. 18", "https://www.fao.org/4/x5082e/X5082E05.htm"],
+  rabbit: ["ФАО · нормы потребления кроликов", "https://openknowledge.fao.org/3/t1690e/t1690e.pdf"],
+  pig: ["NRC · данные по весовым группам, Merck Veterinary Manual", "https://www.merckvetmanual.com/management-and-nutrition/nutrition-pigs/nutritional-requirements-of-pigs"],
+  calf: ["University of Minnesota · кормление телят", "https://extension.umn.edu/agriculture/animals-and-livestock/dairy/group-feeding-dairy-calves"],
+  cow: ["New Mexico State University · концентраты в рационе коров", "https://pubs.nmsu.edu/_d/D105/index.html"],
+  bull: ["Oklahoma State University · откорм КРС", "https://extension.okstate.edu/fact-sheets/an-introduction-to-finishing-beef"],
+  sheep: ["Washington State University · подкормка овец и коз", "https://extension.wsu.edu/animalag/nutritional-flushing-of-small-ruminants/"],
+};
+// Average daily use in grams per head. The basis describes the stock estimate, not a feeding instruction.
+const feedProfiles = {
+  broiler: [
+    [1, 38, "ross", "Среднее за первые 14 дней."],
+    [2, 108, "ross", "Среднее за 15–28-й дни."],
+    [3, 181, "ross", "Среднее за 29–42-й дни."],
+  ],
+  layer: [
+    [4, 28, "hyline", "Среднее за 1–7-ю недели выращивания."],
+    [5, 71, "hyline", "Среднее за 8–20-ю недели выращивания."],
+    [6, 113, "hyline", "Среднее потребление взрослых несушек."],
+  ],
+  goose: [
+    [7, 124, "gooseStart", "В среднем 2,6 кг стартового комбикорма за 21 день."],
+    [8, 300, "gooseGrow", "Ориентир по исследованию гусей на 4–8-й неделях."],
+    [9, 300, "gooseFinish", "Пример потребления на 57–70-й дни. Выпас меняет расход."],
+  ],
+  duck: [
+    [7, 102, "duckGrow", "Среднее за первые три недели у пекинских уток."],
+    [8, 215, "duckGrow", "Для фазы роста взято среднее по 4–7-й неделям у пекинских уток."],
+    [9, 215, "duckFinish", "Оценка для пекинских уток между расходом в 7 недель и после 12 недель вне яйцекладки."],
+  ],
+  turkey: [
+    [16, 59, "turkey", "Среднее по самцам и самкам за 1–4-ю недели."],
+    [17, 302, "turkey", "Среднее по самцам и самкам за 5–13-ю недели."],
+    [18, 504, "turkey", "Среднее по самцам и самкам за 14–18-ю недели."],
+  ],
+  rabbit: [
+    [10, 100, "rabbitStart", "Пример расхода у молодняка около шести недель."],
+    [11, 120, "rabbit", "Ориентир для растущего молодняка. Для сукрольных и кормящих крольчих расход рассчитывают отдельно."],
+    [12, 120, "rabbit", "Поддерживающий рацион взрослых кроликов."],
+  ],
+  pig: [
+    [13, 1300, "pig", "Ориентир между группами 11–25 и 25–50 кг живой массы."],
+    [14, 2200, "pig", "Ориентир для группы 50–75 кг живой массы."],
+    [15, 2800, "pig", "Ориентир между группами 75–100 и 100–135 кг живой массы."],
+  ],
+  cattle: [
+    [22, 900, "calf", "Расход стартера вблизи отъёма. В первые недели потребление существенно ниже."],
+    [20, 7500, "cow", "Пример для голштинской коровы с удоем 22,5 кг в сутки, из расчёта 1 кг концентрата на 3 кг молока."],
+    [21, 4000, "bull", "Пример на начале откорма бычка массой 400 кг, при 1% живой массы в сутки."],
+  ],
+  sheep: [[19, 300, "sheep", "Пример дополнительной подкормки, когда она нужна по рациону."]],
+};
+const calcNames = {goose:"Гуси", duck:"Утки", ...Object.fromEntries(CATS.filter(c=>c.id!=="goose").map(c=>[c.id,c.name]))};
+const calcAnimal = $("#calcAnimal");
+const calcMark = $("#calcMark");
+const calcDays = $("#calcDays");
+const calcHeads = $("#calcHeads");
+const calcRows = $("#calcRows");
+const calcMode = $("#calcMode");
+const cycleDays = {};
+let isCycle = false;
+const mass = grams => grams < 1000 ? `${num(grams)} г` : `${num(grams/1000)} кг`;
+const bagPlural = new Intl.PluralRules("ru");
+const bagUnit = count => ({one:"мешок",few:"мешка",many:"мешков",other:"мешка"})[bagPlural.select(count)];
+const recipeLabel = id => {
+  const r = byId[id];
+  if(r.cat === "cattle") return `${r.mk} · ${r.nm}`;
+  return `${r.mk} · ${r.phn || PH[r.ph].n} · ${r.age}`;
+};
+calcAnimal.innerHTML = Object.keys(feedProfiles).map(id=>`<option value="${id}">${calcNames[id]}</option>`).join("");
+
+function setCalcRecipe(id){
+  const r = byId[id];
+  if(calcAnimal.value!=="duck" || r.cat!=="goose") calcAnimal.value = r.cat;
+  isCycle = false;
+  renderCalc(id);
+}
+function renderCalc(preferred = +calcMark.value){
+  const cat = calcAnimal.value;
+  const feeds = feedProfiles[cat];
+  const canCycle = cat !== "cattle" && feeds.length > 1;
+  isCycle = isCycle && canCycle;
+  calcMode.hidden = !canCycle;
+  $$("[data-calc-mode]",calcMode).forEach(button=>{
+    const selected = (button.dataset.calcMode === "cycle") === isCycle;
+    button.classList.toggle("on",selected);
+    button.setAttribute("aria-pressed",String(selected));
+  });
+  $("#calcSingle").hidden = isCycle;
+  calcRows.hidden = !isCycle;
+  calcMark.innerHTML = feeds.map(([id])=>`<option value="${id}">${recipeLabel(id)}</option>`).join("");
+  if(feeds.some(([id])=>id===preferred)) calcMark.value = String(preferred);
+  calcRows.innerHTML = isCycle ? feeds.map(([id,grams])=>{
+    const r = byId[id];
+    const days = cycleDays[cat]?.[id] ?? r.days ?? "";
+    return `<div class="crow" data-r="${id}">
+      <div class="nm"><b>${r.mk} · ${r.phn || PH[r.ph].n}</b><span>${r.age} · ${mass(grams)} в день на голову</span></div>
+      <label class="fld"><small>Дней</small><input type="number" inputmode="numeric" min="0" max="1000" value="${days}" aria-label="Дней для ${r.mk}"></label>
       <div class="out"><span data-o="bags">0</span><small>мешков</small></div>
-    </div>`}).join("");
+    </div>`;
+  }).join("") : "";
+  updateCalcGuide();
   calc();
 }
+function updateCalcGuide(){
+  const cat = calcAnimal.value;
+  const feeds = feedProfiles[cat];
+  const selected = feeds.find(([id])=>id===+calcMark.value);
+  $("#calcRate").textContent = `Ориентир на голову в день — ${mass(selected[1])}`;
+  const notes = {
+    cattle:`${selected[3]} Считаем только выбранный комбикорм. Сверьте расход с вашим рационом.`,
+    sheep:"Считаем дополнительную подкормку к основному рациону. Расход зависит от сена, выпаса и состояния животных.",
+  };
+  $("#calcHint").textContent = notes[cat] || (isCycle
+    ? "Укажите дни для каждой нужной фазы. Ноль пропускает фазу. Расход усреднён по каждой фазе и служит ориентиром для закупки."
+    : selected[0] === 11 ? selected[3] : "Это ориентир для закупки. Фактический расход зависит от возраста, породы и рациона.");
+  $("#calcSources").innerHTML = (isCycle ? feeds : [selected]).map(([id,grams,source,basis])=>{
+    const [title,url] = feedSources[source];
+    return `<li><strong>${byId[id].mk} · ${mass(grams)} в день на голову.</strong> ${basis} <a href="${url}" target="_blank" rel="noopener noreferrer">${title}</a></li>`;
+  }).join("");
+}
 function calc(){
-  const headsInput = $("#calcHeads");
-  const heads = headsInput.validity.valid ? Math.max(0,headsInput.valueAsNumber || 0) : 0;
-  let bags=0, kg=0, ret=0, opt=0, mixes=0; const ctx=[];
-  $$("#calcRows .crow").forEach(row=>{
-    const r = byId[+row.dataset.r];
-    const days = $("[data-k=d]",row), grams = $("[data-k=g]",row);
-    const d = days.validity.valid ? days.valueAsNumber || 0 : 0;
-    const g = grams.validity.valid ? grams.valueAsNumber || 0 : 0;
-    calcVals[r.id] = {d:$("[data-k=d]",row).value, g:$("[data-k=g]",row).value};
-    const tenthGrams = heads*d*Math.round(g*10);
-    const k = tenthGrams/10000, b = Math.ceil(tenthGrams/250000);
-    $("[data-o=bags]",row).textContent = b.toLocaleString("ru-RU");
-    if(b>0){ bags+=b; kg+=k; mixes+=Math.ceil(b/10); ret+=retail(r,b); opt+=wholesale(r,b); ctx.push({id:r.id,b,d,g}); }
-  });
-  $("#rBags").textContent = bags.toLocaleString("ru-RU");
-  $("#rKg").textContent = `${num(kg)} кг · ${num(bags*25/1000)} т в мешках`;
+  const cat = calcAnimal.value;
+  const heads = calcHeads.validity.valid ? calcHeads.valueAsNumber || 0 : 0;
+  const rows = isCycle ? $$(".crow",calcRows).map(row=>[+row.dataset.r,$("input",row),$("[data-o=bags]",row)]) : [[+calcMark.value,calcDays,null]];
+  const invalidDays = rows.some(([,input])=>!input.validity.valid);
+  let bags=0, grams=0, ret=0, opt=0, mixes=0, totalDays=0;
+  const positions=[];
+  for(const [id,input,output] of rows){
+    const days = input.valueAsNumber || 0;
+    const [,daily] = feedProfiles[cat].find(([key])=>key===id);
+    const amount = invalidDays ? 0 : heads*days*daily;
+    const count = Math.ceil(amount/25000);
+    if(output){
+      output.textContent = num(count);
+      output.nextElementSibling.textContent = bagUnit(count);
+    }
+    if(count){
+      bags += count;
+      grams += amount;
+      totalDays += days;
+      mixes += Math.ceil(count/10);
+      ret += retail(byId[id],count);
+      opt += wholesale(byId[id],count);
+      positions.push({id,b:count});
+    }
+  }
+  $("#rBags").textContent = num(bags);
+  $("#rBagsUnit").textContent = bagUnit(bags);
+  let daysMessage = "Укажите целое число дней от 1 до 1 000";
+  if(isCycle) daysMessage = invalidDays ? "Для каждой фазы укажите целое число дней от 0 до 1 000" : "Укажите дни хотя бы для одной фазы";
+  $("#rKg").textContent = bags ? `Нужно ≈ ${mass(grams)} · в мешках ${num(bags*25)} кг` : heads ? daysMessage : "Укажите поголовье от 1 до 100 000";
+  $("#rDailyLabel").textContent = isCycle ? "В среднем за день" : "Расход за день";
+  $("#rDaily").textContent = totalDays ? `≈ ${mass(grams/totalDays)}` : "—";
   $("#rRet").textContent = rub(ret);
   $("#rOpt").textContent = rub(opt);
-  $("#rMix").textContent = mixes.toLocaleString("ru-RU");
+  $("#rMix").textContent = num(mixes);
   $("#rTariff").textContent = bags ? `${tariffForBags(bags)} для выбранного объёма: ${rub(bags < bagsPerTonne ? ret : opt)}.` : "";
-  if(!bags) $("#rKg").textContent = heads ? "Укажите дни и норму в граммах" : "Укажите поголовье";
-  S.calcCtx = bags ? {cat:calcCat, heads, ctx} : null;
+  S.calcCtx = bags ? {cat,heads,totalDays,positions} : null;
   $("#calcToOrder").disabled = !S.calcCtx;
 }
-$("#calcAnimals").addEventListener("click", e=>{ const b=e.target.closest("[data-ca]"); if(b) setCalcAnimal(b.dataset.ca); });
-$("#calcRows").addEventListener("input", calc);
-$("#calcHeads").addEventListener("input", calc);
+calcAnimal.addEventListener("change",()=>renderCalc());
+calcMark.addEventListener("change",()=>{ updateCalcGuide(); calc(); });
+calcMode.addEventListener("click",e=>{
+  const button = e.target.closest("[data-calc-mode]");
+  if(!button) return;
+  isCycle = button.dataset.calcMode === "cycle";
+  renderCalc();
+});
+calcRows.addEventListener("input",e=>{
+  const input = e.target;
+  const cat = calcAnimal.value;
+  if(input.validity.valid) (cycleDays[cat] ??= {})[input.closest(".crow").dataset.r] = input.value;
+  calc();
+});
+calcHeads.addEventListener("input", calc);
+calcDays.addEventListener("input", calc);
 $("#calcToOrder").addEventListener("click", ()=>{
-  if(!S.calcCtx){ const i=$("#calcRows [data-k=g]"); if(i){i.focus(); i.style.borderColor="#C2410C";} return; }
-  S.calcCtx.ctx.forEach(x=>S.order[x.id]=x.b); saveOrder(); renderBasket(); renderCat();
-  const ct = CATS.find(x=>x.id===S.calcCtx.cat);
-  const t=$("[name=animals]"); if(!t.value.trim()) t.value = `${ct.name}, ${S.calcCtx.heads} голов`;
+  if(!S.calcCtx) return;
+  const {cat,heads,totalDays,positions} = S.calcCtx;
+  positions.forEach(x=>S.order[x.id]=x.b); saveOrder(); renderBasket(); renderCat();
+  const t=$("[name=animals]"); if(!t.value.trim()) t.value = `${calcNames[cat]}, поголовье ${num(heads)}, на ${num(totalDays)} дн.`;
   $("#order").scrollIntoView({behavior:reduce?"auto":"smooth"});
 });
 
