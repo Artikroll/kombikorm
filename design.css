@@ -73,6 +73,15 @@ h2{font-size:clamp(28px,4.25vw,57px);max-width:21ch;text-wrap:balance}
 .ptable .recipe-link{background:transparent;border:0;padding:4px 0;color:var(--g900);font-weight:600;text-align:left;text-decoration:underline;text-underline-offset:3px}
 .draft-data{font-size:14px;color:var(--muted);margin-top:12px}
 .cat-note{color:var(--muted)}
+.table-volume{display:block;font-size:12px;color:var(--muted);line-height:1.5}
+.delivery-limits{margin:24px 0 0;border-top:1px solid var(--line)}
+.delivery-limits>div{display:flex;justify-content:space-between;align-items:baseline;gap:8px 18px;padding:12px 0;border-bottom:1px solid var(--line)}
+.delivery-limits dt{color:var(--muted)}
+.delivery-limits dd{margin:0;color:var(--g900);font:800 21px/1.2 "Manrope",sans-serif;white-space:nowrap}
+.shipment-docs li{display:block;border-top:1px solid var(--line);padding-top:12px}
+.preorder-steps{padding-left:22px;margin:14px 0 0;color:#e2ecdf}
+.preorder-steps li{display:list-item;margin-bottom:7px}
+.preorder-steps li::before{display:none}
 #calc{background:#e9eee3}
 .res::after{pointer-events:none}
 .res-big{overflow-wrap:anywhere}
@@ -127,6 +136,7 @@ h2{font-size:clamp(28px,4.25vw,57px);max-width:21ch;text-wrap:balance}
   .vs-row .a::before{content:none}
   .price-tg{max-width:100%}
   .price-tg button{padding:8px 9px}
+  .delivery-limits dd{font-size:17px}
   .tabs{gap:5px}.tab{font-size:12px;min-height:40px;padding-inline:7px}
   .tab svg{width:23px;height:23px}
   .res-rows div{flex-wrap:wrap}
