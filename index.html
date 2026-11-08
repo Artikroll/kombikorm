@@ -558,7 +558,7 @@ p{margin:0}
   body{padding-bottom:70px}
 }
 </style>
-<link rel="stylesheet" href="design.css?v=20261108">
+<link rel="stylesheet" href="design.css?v=20261108-final">
 </head>
 <body>
 <a class="skip-link" href="#top">К содержанию</a>
@@ -612,7 +612,7 @@ p{margin:0}
     </figure>
   </div>
 </section>
-<div class="hero-band"><div class="wrap"><span>Проект производства в Аюсазово · запуск в марте 2027</span><a href="#farm">Для КФХ, ООО и ИП ↗</a></div></div>
+<div class="hero-band"><div class="wrap"><span>Проект в Аюсазово · начало запуска в марте 2027</span><a href="#farm">Для КФХ, ООО и ИП ↗</a></div></div>
 
 <!-- WHY -->
 <section class="sec why" id="why">
@@ -645,7 +645,7 @@ p{margin:0}
     <div class="tabs" id="tabs" role="group" aria-label="Виды животных"></div>
     <div id="catView"></div>
     <div class="detail" id="detail"></div>
-    <p class="cat-note">Розничная цена действует при объёме менее 1 000 кг, оптовая — от 1 000 кг. Цена за 500 кг в режиме «Опт» показана для сравнения. Цены предварительные.</p>
+    <p class="cat-note">Розничная цена действует при объёме менее 1 000 кг, оптовая — от 1 000 кг. Цена за 500 кг в режиме «Опт» показана для сравнения. Цены предварительные, доставка рассчитывается отдельно.</p>
   </div>
 </section>
 
@@ -668,7 +668,7 @@ p{margin:0}
           <span>голов</span>
         </div>
         <div id="calcRows"></div>
-        <p class="calc-hint">Дни подставлены из возрастных фаз рецепта. Суточную норму на голову укажите свою. <span class="gap" data-clean="Если нормы нет, технолог подскажет её при звонке.">Нормы расхода по каждому рецепту готовит технолог. Затем калькулятор будет подставлять их сам.</span></p>
+        <p class="calc-hint">Дни подставлены из возрастных фаз рецепта. Суточную норму на голову возьмите из инструкции к комбикорму или уточните у специалиста.</p>
       </div>
       <aside class="res rv d1" aria-live="polite">
         <span class="lbl">Итого на цикл</span>
@@ -710,7 +710,7 @@ p{margin:0}
       <div class="step rv"><div class="step-n">1</div><h4>Дозирование</h4><p>Компоненты взвешивают на замес. Один замес в смесителе СГ-4 — 250 кг.</p></div>
       <div class="step rv d1"><div class="step-n">2</div><h4>Дробление зерна</h4><p>Пшеница, ячмень, овёс, кукуруза. <span class="gap" data-clean="">Поставщики зерна и доля местного сырья уточняются.</span></p></div>
       <div class="step rv d2"><div class="step-n">3</div><h4>Белок и добавки</h4><p>Соевый и подсолнечный шрот, рыбная мука, СОМ, ВТМ, лизин, метионин, треонин, премикс 1%.</p></div>
-      <div class="step rv d3"><div class="step-n">4</div><h4>Гранулирование</h4><p>Размер гранул — от 2,5 до 8 мм, в зависимости от марки.</p>
+      <div class="step rv d3"><div class="step-n">4</div><h4>Гранулирование</h4><p>Планируемый размер гранул — от 2,5 до 8 мм. Размер для каждой марки уточним после испытаний.</p>
         <div class="pellets" aria-label="Сравнение размеров гранул">
           <div><i style="width:10px;height:10px"></i>2,5</div><div><i style="width:12px;height:12px"></i>3</div><div><i style="width:16px;height:16px"></i>4</div><div><i style="width:24px;height:24px"></i>6</div><div><i style="width:32px;height:32px"></i>8 мм</div>
         </div>
@@ -721,7 +721,7 @@ p{margin:0}
     <div class="cmp">
       <div class="rv">
         <h3>Сравните две рецептуры</h3>
-        <p class="lead" style="font-size:16px">Выберите две марки и сравните массу компонентов в проектных раскладках.</p>
+        <p class="lead" style="font-size:16px">Сравните проектные раскладки, в которых сумма компонентов составляет 1 000 кг. Состав уточняется перед выпуском.</p>
         <div class="cmp-sel">
           <label><i style="background:var(--gold)"></i><select id="cmpA" aria-label="Первая рецептура"></select></label>
           <label><i style="background:var(--g600)"></i><select id="cmpB" aria-label="Вторая рецептура"></select></label>
@@ -817,15 +817,16 @@ p{margin:0}
       <h2>Стандарты и документы на партию</h2>
       <ul class="checks shipment-docs">
         <li><div><strong>УПД или накладная</strong><span>Для КФХ, ООО и ИП предусмотрен УПД через ЭДО. Бумажный комплект согласуем при заказе.</span></div></li>
-        <li><div><strong>Ветеринарный документ</strong><span>Для подконтрольной продукции оформляем эВСД в ФГИС «Меркурий», когда он требуется для отгрузки.</span></div></li>
-        <li><div><strong>Документы о качестве</strong><span>Паспорт качества на партию. Документ о соответствии предоставим, если он требуется для конкретной продукции.</span></div></li>
-        <li><div><strong>Маркировка и оплата</strong><span>На бирке — назначение, марка, состав, производитель, масса нетто, дата изготовления, номер партии и срок хранения. Кассовый чек выдаём в предусмотренных законом случаях.</span></div></li>
+        <li><div><strong>Ветеринарный документ</strong><span>Когда для отгрузки требуется эВСД, оформим его в ФГИС «Меркурий». При полной приёмке получатель гасит транспортный эВСД в течение 24 часов после доставки.</span></div></li>
+        <li><div><strong>Документы о качестве</strong><span>Планируем оформлять паспорт качества на партию. Необходимость документа о соответствии определим для каждой марки перед выпуском.</span></div></li>
+        <li><div><strong>Пришивная бирка</strong><span>На бирке укажем наименование и назначение, марку, состав, изготовителя и адрес, массу нетто, дату изготовления, номер партии, срок и условия хранения. Показатели качества уточним по документации на марку.</span></div></li>
+        <li><div><strong>Кассовый чек</strong><span>При оплате физлицом выдаём чек в случаях, предусмотренных законом, в том числе при предоплате и её зачёте при передаче товара.</span></div></li>
       </ul>
-      <p class="cat-note">Разъяснения: <a href="https://www.nalog.gov.ru/rn77/news/activities_fts/16543959/">УПД</a> · <a href="https://vet.alania.gov.ru/news/827">эВСД</a> · <a href="https://www.cbr.ru/na/5348-u/">наличные расчёты</a>.</p>
+      <p class="cat-note">Разъяснения: <a href="https://www.nalog.gov.ru/rn77/news/activities_fts/16543959/">УПД</a> · <a href="https://help.vetrf.ru/images/8/8a/Order862_20251119.pdf.pdf">эВСД</a> · <a href="https://www.cbr.ru/na/5348-u/">наличные расчёты</a>.</p>
     </div>
     <div>
       <div class="sheet rv" id="gostSheet"></div>
-      <p class="cat-note">Каталог содержит проектные рецептуры. Перед продажей запланированы лабораторные испытания. Стандарт или ТУ и документы о соответствии уточняются по каждой марке.</p>
+      <p class="cat-note">В таблице указаны стандарты для соответствующих групп продукции. ГОСТ или ТУ для каждой марки, состав и показатели уточним после испытаний. Изображение мешка показывает дизайн упаковки.</p>
     </div>
   </div>
 </section>
@@ -838,11 +839,11 @@ p{margin:0}
       <h2>Коротко о главном</h2>
     </div>
     <div class="faq" id="faqList">
-      <details><summary>Когда начнутся отгрузки?</summary><div class="ans">Запуск цеха запланирован на март 2027 года. Точную дату первой отгрузки сообщим после пусконаладки и подготовки документов.</div></details>
+      <details><summary>Когда начнутся отгрузки?</summary><div class="ans">Начало запуска цеха запланировано на март 2027 года. Дату первой отгрузки сообщим после монтажа, испытаний и оформления необходимых документов.</div></details>
       <details><summary>Сколько стоят мешок, 500 кг и тонна?</summary><div class="ans">Предварительные цены есть в <a href="#catalog">каталоге</a> и в прайсе для Excel. Розничный тариф — при объёме менее 1 000 кг, оптовый — от 1 000 кг.</div></details>
       <details><summary>Чем предзаказ отличается от заказа?</summary><div class="ans">Предзаказ бесплатный. Сначала согласуем марки, объём, цену и срок доставки. Затем вы оформляете заказ и оплачиваете 100% суммы.</div></details>
       <details><summary>Как подобрать гранулированный комбикорм?</summary><div class="ans">Выберите вид животных и возраст. Для молодняка в каталоге есть стартовые позиции, для подросших — ростовые и финишные.</div></details>
-      <details><summary>Можно ли заказать по своей рецептуре?</summary><div class="ans">Производим только по рецептурам из нашей линейки. Перед выпуском проверяем их в лаборатории по применимому ГОСТ или ТУ.</div></details>
+      <details><summary>Можно ли заказать по своей рецептуре?</summary><div class="ans">Заказ по индивидуальной рецептуре не предусмотрен. К выпуску готовим позиции из каталога и запланировали лабораторные испытания.</div></details>
       <details><summary>Какие документы получит покупатель?</summary><div class="ans">Для бизнеса предусмотрен УПД, паспорт качества партии, а в предусмотренных случаях — документ о соответствии и эВСД. <a href="#docs">Подробнее о документах</a>.</div></details>
       <details><summary>Какой минимальный объём доставки?</summary><div class="ans">По СП Ташбулатово — от 500 кг, по остальной территории Абзелиловского района — от 1 т, за пределы района — от 5 т. Стоимость зависит от километража и региона.</div></details>
       <details><summary>Какого размера гранулы?</summary><div class="ans">От 2,5 до 8 мм. Например, ПК-2 для цыплят яичных кроссов — 2,5 мм. Точный размер указан в карточке марки.</div></details>
@@ -979,7 +980,7 @@ const R = [
  {id:22,cat:"cattle",ph:"start",nm:"Телята ПРЕСТАРТ",age:"0–3 месяца",days:90,mk:"КР-1",fm:"Гранула",sz:3,gost:"ГОСТ 9268-2015",opt:47273,optB:1182,ret:52000,retB:1300,d:"Стартовый гранулированный комбикорм для телят с сухим обезжиренным молоком.",cp:c("Кукуруза:350;Овёс:200;Шрот соевый:200;Пшеница:120;СОМ (молоко):50;Масло подсолнечное:30;Монокальцийфосфат:18;Мел:10;Премикс 1%:10;Соль:2"),an:"calf"},
  {id:20,cat:"cattle",ph:"finish",nm:"Коровы ДОЙНЫЕ, раздой",age:"дойное стадо",days:null,mk:"КК-60",fm:"Гранула",sz:8,gost:"ГОСТ 9268-2015",opt:20000,optB:500,ret:22000,retB:550,d:"Высокоэнергетический концентрат, крупная гранула 8 мм для дойного стада.",cp:c("Ячмень:250;Отруби:220;Пшеница:200;Шрот подсолнечный:180;Кукуруза:80;Мел:25;Монокальцийфосфат:15;Масло подсолнечное:10;Премикс 1%:10;Соль:10"),an:"cow",phn:"Продуктивность"},
  {id:21,cat:"cattle",ph:"finish",nm:"Бычки, мясной откорм",age:"откорм",days:null,mk:"КК-65",fm:"Гранула",sz:8,gost:"ГОСТ 9268-2015",opt:19091,optB:477,ret:21200,retB:530,d:"Концентрат для интенсивного мясного откорма бычков.",cp:c("Ячмень:350;Пшеница:200;Отруби:170;Шрот подсолнечный:140;Кукуруза:100;Мел:15;Монокальцийфосфат:10;Масло подсолнечное:10;Премикс 1%:10;Соль:5"),an:"bull",phn:"Откорм"},
- {id:19,cat:"sheep",ph:"finish",nm:"Овцы и козы, концентрат",age:"взрослое поголовье",days:null,mk:"КК-81",fm:"Гранула",sz:6,gost:"ГОСТ 22834-87",opt:18182,optB:455,ret:20000,retB:500,d:"Концентрат на овсе и ячмене с ВТМ для поддержания упитанности и настрига.",cp:c("Овёс:300;Ячмень:250;Отруби:180;Шрот подсолнечный:150;Травяная мука ВТМ:80;Мел:15;Монокальцийфосфат:10;Премикс 1%:10;Соль:5"),phn:"Продуктивность"}
+ {id:19,cat:"sheep",ph:"finish",nm:"Овцы и козы, концентрат",age:"взрослое поголовье",days:null,mk:"КК-81",fm:"Гранула",sz:6,gost:"ГОСТ / ТУ уточняются",opt:18182,optB:455,ret:20000,retB:500,d:"Проект концентрата для взрослых овец и коз на овсе и ячмене с витаминно-травяной мукой.",cp:c("Овёс:300;Ячмень:250;Отруби:180;Шрот подсолнечный:150;Травяная мука ВТМ:80;Мел:15;Монокальцийфосфат:10;Премикс 1%:10;Соль:5"),phn:"Продуктивность"}
 ];
 const byId = Object.fromEntries(R.map(r=>[r.id,r]));
 const GROUPS = [
@@ -997,6 +998,7 @@ const shade = (hex,i) => { // vary tone inside a group
   return "#"+[mix(r),mix(g),mix(b)].map(v=>v.toString(16).padStart(2,"0")).join("");
 };
 const sum = r => r.cp.reduce((a,[,v])=>a+v,0);
+const isBalanced = r => sum(r) === 1000;
 
 /* ---------- helpers ---------- */
 const $ = (s,el=document) => el.querySelector(s);
@@ -1067,7 +1069,7 @@ function renderCat(){
   if(S.cat==="all"){
     const rows = R.filter(r=>S.phf==="all"||r.ph===S.phf).sort((a,b)=>a.id-b.id);
     v.innerHTML = `<div class="ph-filter">${[["all","Все фазы"],["start","Старт / престарт"],["grow","Рост"],["finish","Финиш / продуктивность"]].map(([k,n])=>`<button type="button" data-phf="${k}" class="${S.phf===k?'on':''}">${n}</button>`).join("")}</div>
-    <div class="ptable-wrap"><table class="ptable"><thead><tr><th>Комбикорм</th><th>Марка</th><th>Гранула</th><th>Стандарт*</th><th class="num">${S.pt==='ret'?'Мешок 25 кг':'Тонна'}</th><th class="num">Другие объёмы</th><th></th></tr></thead><tbody>
+    <div class="ptable-wrap"><table class="ptable"><thead><tr><th>Комбикорм</th><th>Марка</th><th>Гранула</th><th>Стандарт группы</th><th class="num">${S.pt==='ret'?'Мешок 25 кг':'Тонна'}</th><th class="num">Другие объёмы</th><th></th></tr></thead><tbody>
     ${rows.map(r=>{const p=priceMain(r);return `<tr class="row ${S.sel===r.id?'on':''}" data-id="${r.id}"><td class="c-name"><span class="dot" style="background:${PH[r.ph].hex}"></span>${r.nm} <span style="color:var(--soft)">· ${r.age}</span></td><td class="mk"><button class="recipe-link" type="button" data-recipe="${r.id}" aria-label="Состав ${r.mk}">${r.mk}</button></td><td class="c-size">${r.fm.toLowerCase()} ${num(r.sz)} мм</td><td class="c-gost">${r.gost}</td><td class="num"><b>${p.primary}</b><small class="table-volume">${p.primaryLabel}</small></td><td class="num c-alt"><small class="table-volume">500 кг · ${p.half}</small><small class="table-volume">${p.secondaryLabel} · ${p.secondary}</small></td><td class="num"><button class="add ${S.order[r.id]?'done':''}" data-add="${r.id}" type="button">${S.order[r.id]?'В заявке':'В заявку'}</button></td></tr>`}).join("")}
     </tbody></table></div>`;
   } else {
@@ -1089,21 +1091,19 @@ function renderDetail(){
   const by = {}; r.cp.forEach(([n,v])=>{const g=grp(n).k;(by[g]=by[g]||[]).push([n,v])});
   const colorOf = {}; GROUPS.forEach(g=>(by[g.k]||[]).forEach(([n],i)=>colorOf[n]=shade(g.col,i)));
   const ordered = GROUPS.flatMap(g=>by[g.k]||[]);
-  const complete = Math.abs(tot - 1000) < 0.001;
-  const totRow = `<tr><td>Итого</td><td>${num(tot)}</td><td>${num(tot/2)}</td></tr>` +
-    (complete ? "" : `<tr><td colspan="3"><span class="gap">Сумма отличается от 1 000 кг. Рецептура требует сверки.</span></td></tr>`);
+  const complete = isBalanced(r);
   $("#detail").innerHTML = `<div class="dt-l fade-swap">
       <div class="eyebrow" style="margin-bottom:10px">Проектная рецептура</div>
       <h3 tabindex="-1">${r.mk} · ${r.nm}</h3>
-      <p>${r.d} ${r.fm} ${num(r.sz)} мм. Ориентир: ${r.gost}.</p>
-      <p class="draft-data">Доли рассчитаны от суммы компонентов в раскладке.</p>
-      <div class="stack" aria-hidden="true">${ordered.map(([n,v])=>`<span title="${n}: ${v} кг" style="flex:0 0 ${v/tot*100}%;background:${colorOf[n]}"></span>`).join("")}</div>
-      <div class="legend">${GROUPS.filter(g=>by[g.k]).map(g=>{const s=by[g.k].reduce((a,[,v])=>a+v,0);return `<div><i style="background:${g.col}"></i>${g.n}<b>${num(s/tot*100)}%</b></div>`}).join("")}</div>
+      <p>${r.d} ${r.fm} ${num(r.sz)} мм. ${r.gost.startsWith("ГОСТ / ТУ") ? `${r.gost}.` : `Ориентир по группе: ${r.gost}.`}</p>
+      <p class="draft-data">${complete ? "Проектный состав. Дозировки уточняются перед выпуском." : "Показываем перечень компонентов. Дозировки будут доступны после сверки рецептуры."}</p>
+      ${complete ? `<div class="stack" aria-hidden="true">${ordered.map(([n,v])=>`<span title="${n}: ${v} кг" style="flex:0 0 ${v/tot*100}%;background:${colorOf[n]}"></span>`).join("")}</div>
+      <div class="legend">${GROUPS.filter(g=>by[g.k]).map(g=>{const s=by[g.k].reduce((a,[,v])=>a+v,0);return `<div><i style="background:${g.col}"></i>${g.n}<b>${num(s/tot*100)}%</b></div>`}).join("")}</div>` : ""}
       <div style="display:flex;gap:10px;margin-top:22px;flex-wrap:wrap"><button class="btn btn-main btn-sm" type="button" data-add="${r.id}">${S.order[r.id]?'Уже в заявке':'Добавить в заявку'}</button><a class="btn btn-line btn-sm" href="#calc" data-calc="${r.cat}">Посчитать мешки</a></div>
     </div>
-    <div class="dt-r"><table class="ctab"><thead><tr><th>Компонент</th><th>${complete?"На 1 т, кг":"По проекту, кг"}</th><th>${complete?"На 500 кг, кг":"½ раскладки, кг"}</th></tr></thead>
-      <tbody>${ordered.map(([n,v])=>`<tr><td><i style="background:${colorOf[n]}"></i>${n}</td><td>${num(v)}</td><td>${num(v/2)}</td></tr>`).join("")}</tbody>
-      <tfoot>${totRow}</tfoot></table></div>`;
+    <div class="dt-r"><table class="ctab"><thead><tr><th>Компонент</th>${complete ? "<th>На 1 т, кг</th><th>На 500 кг, кг</th>" : ""}</tr></thead>
+      <tbody>${ordered.map(([n,v])=>`<tr><td><i style="background:${colorOf[n]}"></i>${n}</td>${complete ? `<td>${num(v)}</td><td>${num(v/2)}</td>` : ""}</tr>`).join("")}</tbody>
+      ${complete ? `<tfoot><tr><td>Итого</td><td>${num(tot)}</td><td>${num(tot/2)}</td></tr></tfoot>` : ""}</table></div>`;
 }
 
 document.addEventListener("click", e=>{
@@ -1245,8 +1245,9 @@ function renderCmp(){
   $("#cmpSum").innerHTML = [a,b].map((r,i)=>`<div style="border-top:4px solid ${i?'var(--g600)':'var(--gold)'}"><b>${r.mk}</b><span>Белковые компоненты ${num(prot(r)/sum(r)*100)}% раскладки<br>${rub(r.retB)} за мешок</span></div>`).join("");
 }
 function initCmp(){
-  const opts = [...R].sort((a,b)=>a.id-b.id).map(r=>`<option value="${r.id}">${r.mk} · ${r.nm}</option>`).join("");
-  $("#cmpA").innerHTML = opts; $("#cmpB").innerHTML = opts; $("#cmpA").value = 1; $("#cmpB").value = 3;
+  const options = R.filter(isBalanced).sort((a,b)=>a.id-b.id);
+  const opts = options.map(r=>`<option value="${r.id}">${r.mk} · ${r.nm}</option>`).join("");
+  $("#cmpA").innerHTML = opts; $("#cmpB").innerHTML = opts; $("#cmpB").selectedIndex = 1;
   $("#cmpA").addEventListener("change",renderCmp); $("#cmpB").addEventListener("change",renderCmp); renderCmp();
 }
 

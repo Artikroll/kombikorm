@@ -116,6 +116,7 @@ h2{font-size:clamp(28px,4.25vw,57px);max-width:21ch;text-wrap:balance}
 @media(max-width:640px){
   :root{--pad:17px}
   html{scroll-padding-top:107px}
+  .res::after{display:none}
   .hdr-in{display:grid;grid-template-columns:minmax(0,1fr) auto;min-height:62px;gap:0 8px;padding-top:10px}
   .hdr-nav{display:flex;grid-column:1/-1;grid-row:2;gap:clamp(11px,4vw,25px);min-height:42px;align-items:center}
   .hdr-nav a{font-size:13px}
